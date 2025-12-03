@@ -1,0 +1,171 @@
+/* 브라우저 기본값 제거 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* body는 화면 전체를 차지 */
+body {
+  display: flex;
+  justify-content: center; /* 포스터 가로 가운데 */
+  align-items: center; /* 포스터 세로 가운데 */
+  background: #ddd; /* 포스터 바깥 배경색 */
+}
+
+/* 포스터 영역: 1920 x 1080 고정 */
+.poster {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  overflow: hidden; /* 혹시 이미지가 넘치면 잘라냄 */
+}
+
+/* 포스터에 삽입된 배경 이미지 */
+.bg-image {
+  z-index: 2;
+  position: absolute; /* 위치 조절 가능 */
+
+  top: 0; /* 포스터 위쪽 기준 */
+  left: 0; /* 포스터 왼쪽 기준 */
+
+  width: 1920px; /* 배경 이미지 크기 */
+  height: 1080px; /* 고정 크기 */
+
+  object-fit: cover;
+  /* 이미지가 잘리지 않게 꽉 채우기
+     cover → 비율 유지하면서 포스터 크기에 맞춤 */
+}
+/* 로고 이미지 스타일 */
+.logo {
+  z-index: 10;
+  position: absolute; /* 좌표로 위치 고정 */
+
+  left: 474px; /* X 좌표 — 오른쪽으로 갈수록 숫자 증가 */
+  top: 31px; /* Y 좌표 — 아래로 갈수록 숫자 증가 */
+
+  height: 150px;
+  /* 원하는 크기로 조절 가능
+     ↓ 크기 조절 팁
+     - 값이 크면 로고가 커짐
+     - width는 자동 비율 맞춰짐 */
+
+  /* 그림자 효과 */
+  filter: drop-shadow(8px 8px 12px rgba(0, 0, 0, 0.35));
+  /*
+    drop-shadow(가로 이동, 세로 이동, 번짐, 색/투명도)
+    → 지금 값은 자연스러운 풍선 스타일 그림자 느낌으로 설정해둠
+    원하면 더 진하게·부드럽게 변경해줄 수 있음!
+  */
+}
+.blur-circle {
+  z-index: 3;
+  position: absolute; /* x,y 좌표로 배치 */
+
+  left: 194px; /* X 위치 — 오른쪽으로 이동 */
+  top: -181px; /* Y 위치 — 음수라 위쪽으로 이동 */
+
+  width: 1532px; /* 기본 크기 — 필요하면 조절 가능 */
+  height: auto; /* 이미지 비율 유지 */
+
+  pointer-events: none;
+  /* 마우스 이벤트 막아두면 요소가 클릭 방해하지 않음 */
+
+  filter: blur(0px);
+  /* 지금은 이미지 자체가 블러라 추가 블러는 필요 없음
+     원하면 값 늘리면 더 퍼지는 효과 추가 가능 */
+}
+.collection-text {
+  position: absolute; /* 포스터 안에서 좌표 배치 */
+  z-index: 4;
+
+  left: 160px; /* X 위치 */
+  top: 60px; /* Y 위치 */
+
+  font-family: "AppleSDGothicNeoH00", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+
+  color: #000000;
+  letter-spacing: 1px; /* 글자 간격 조절 */
+}
+.city-text {
+  position: absolute; /* 포스터 안에서 좌표 배치 */
+  z-index: 4;
+
+  left: 260px; /* X 위치 */
+  top: 114px; /* Y 위치 */
+
+  font-family: "AppleSDGothicNeoH00", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+
+  color: #000000;
+  letter-spacing: 1px;
+}
+.info-text {
+  position: absolute; /* 좌표 배치 */
+  z-index: 4;
+  left: 1250px; /* X 위치 */
+  top: 63px; /* Y 위치 */
+  font-family: "AppleSDGothicNeoEB00", sans-serif;
+  /* ← 여기! 폰트 이름만 바꿔주면 됨 */
+  font-size: 32px;
+  font-weight: 600;
+
+  color: #000000;
+  letter-spacing: 1px;
+  line-height: 54px; /* 줄 사이 여백 → 36px보다 조금 큰 값 */
+}
+/* 파란 퍼즐 조각 1 */
+.puzzle-1 {
+  position: absolute; /* 좌표 배치 가능 */
+  z-index: 2;
+  left: -220px; /* X 위치 — 음수면 왼쪽 바깥으로 이동 */
+  top: 348px; /* Y 위치 */
+
+  width: 666px; /* 고정 크기 */
+  height: 716px; /* 고정 크기 */
+  object-fit: cover; /* 문제 없이 크기 유지 */
+
+  transform: rotate(16deg); /* 16도 회전 */
+
+  filter: blur(50px);
+  /* 흐림 효과 100px */
+
+  pointer-events: none;
+  /* 클릭 방해 안 하도록 */
+}
+.puzzle-2 {
+  position: absolute;
+  z-index: 2;
+  left: 848px; /* X 위치 */
+  top: -229px; /* Y 위치 — 음수면 위로 이동 */
+
+  width: 605px; /* 퍼즐 크기 그대로 유지 */
+  height: 1036px; /* 실제 이미지 비율에 맞춤 (위 이미지 크기 기준) */
+  object-fit: cover;
+
+  transform: rotate(-15deg); /* 시계 반대 방향으로 15도 회전 */
+
+  filter: blur(50px); /* 흐림 효과 그대로 */
+  pointer-events: none; /* 마우스 방해 방지 */
+}
+.puzzle-3 {
+  position: absolute;
+
+  left: 1243px; /* X 위치 */
+  top: 539px; /* Y 위치 */
+
+  width: 821px; /* 원본 비율대로 설정 */
+  height: 1090px;
+  object-fit: cover;
+
+  transform: rotate(15deg); /* 시계 방향 15도 회전 */
+
+  filter: blur(100px); /* 흐림 효과 */
+  pointer-events: none;
+
+  z-index: 2; /* 앞으로 요소 겹침 순서를 위해 포함 */
+}
